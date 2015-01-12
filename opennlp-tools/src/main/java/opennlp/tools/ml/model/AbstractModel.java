@@ -24,7 +24,7 @@ import java.text.DecimalFormat;
 public abstract class AbstractModel implements MaxentModel {
 
   /** Mapping between predicates/contexts and an integer representing them. */
-  protected IndexHashTable<String> pmap;
+  protected ObjIntTable<String> pmap;
   /** The names of the outcomes. */
   protected String[] outcomeNames;
   /** Parameters for the model. */
@@ -37,7 +37,7 @@ public abstract class AbstractModel implements MaxentModel {
   /** The type of the model. */
   protected ModelType modelType;
 
-  public AbstractModel(Context[] params, String[] predLabels, IndexHashTable<String> pmap, String[] outcomeNames) {
+  public AbstractModel(Context[] params, String[] predLabels, ObjIntTable<String> pmap, String[] outcomeNames) {
     this.pmap = pmap;
     this.outcomeNames =  outcomeNames;
     this.evalParams = new EvalParameters(params,outcomeNames.length);
@@ -54,10 +54,9 @@ public abstract class AbstractModel implements MaxentModel {
   }
 
   private void init(String[] predLabels, String[] outcomeNames){
-    this.pmap = new IndexHashTable<String>(predLabels, 0.7d);
+    this.pmap = ObjIntTableFactory.create(predLabels, 0.7d);
     this.outcomeNames =  outcomeNames;
   }
-
 
   /**
    * Return the name of the outcome corresponding to the highest likelihood

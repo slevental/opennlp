@@ -25,14 +25,11 @@ import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.Map;
 
-import opennlp.tools.ml.model.AbstractModel;
-import opennlp.tools.ml.model.Context;
-import opennlp.tools.ml.model.EvalParameters;
-import opennlp.tools.ml.model.IndexHashTable;
+import opennlp.tools.ml.model.*;
 
 public class PerceptronModel extends AbstractModel {
 
-  public PerceptronModel(Context[] params, String[] predLabels, IndexHashTable<String> pmap, String[] outcomeNames) {
+  public PerceptronModel(Context[] params, String[] predLabels, ObjIntTable<String> pmap, String[] outcomeNames) {
     super(params,predLabels,pmap,outcomeNames);
     modelType = ModelType.Perceptron;
   }

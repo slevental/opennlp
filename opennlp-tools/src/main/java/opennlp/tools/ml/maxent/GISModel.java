@@ -121,11 +121,7 @@ public final class GISModel extends AbstractModel {
    *         method getOutcome(int i).
    */
   public final double[] eval(String[] context, float[] values, double[] outsums) {
-    int[] scontexts = new int[context.length];
-    for (int i = 0; i < context.length; i++) {
-      Integer ci = pmap.get(context[i]);
-      scontexts[i] = ci == null ? -1 : ci;
-    }
+    int[] scontexts = pmap.getAll(context);
     prior.logPrior(outsums, scontexts, values);
     return GISModel.eval(scontexts, values, outsums, evalParams);
   }

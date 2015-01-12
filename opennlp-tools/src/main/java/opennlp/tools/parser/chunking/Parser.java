@@ -97,7 +97,7 @@ public class Parser extends AbstractBottomUpParser {
    * @param advancePercentage The minimal amount of probability mass which advanced outcomes must represent.
    * Only outcomes which contribute to the top "advancePercentage" will be explored.
    */
-  private Parser(MaxentModel buildModel, MaxentModel checkModel, POSTagger tagger, Chunker chunker, HeadRules headRules, int beamSize, double advancePercentage) {
+  public Parser(MaxentModel buildModel, MaxentModel checkModel, POSTagger tagger, Chunker chunker, HeadRules headRules, int beamSize, double advancePercentage) {
     super(tagger, chunker, headRules, beamSize, advancePercentage);
     this.buildModel = buildModel;
     this.checkModel = checkModel;

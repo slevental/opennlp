@@ -34,7 +34,7 @@ package opennlp.tools.ml.model;
  * thread safety is achieved through immutability. Though its not strictly immutable
  * which means, that the table must still be safely published to other threads.
  */
-public class IndexHashTable<T> {
+public class IndexHashTable<T> implements ObjIntTable<T> {
 
   private final Object keys[];
   private final int values[];
@@ -113,6 +113,7 @@ public class IndexHashTable<T> {
    * @param key
    * @return the index or -1 if there is no entry to the keys
    */
+  @Override
   public int get(T key) {
 
     int startIndex = indexForHash(key.hashCode(), keys.length);
@@ -131,10 +132,12 @@ public class IndexHashTable<T> {
    *
    * @return the number of elements in this map.
    */
+  @Override
   public int size() {
     return size;
   }
 
+  @Override
   @SuppressWarnings("unchecked")
   public T[] toArray(T array[]) {
     for (int i = 0; i < keys.length; i++) {

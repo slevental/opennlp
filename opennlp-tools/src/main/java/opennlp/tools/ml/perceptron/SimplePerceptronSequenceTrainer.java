@@ -25,15 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import opennlp.tools.ml.AbstractEventModelSequenceTrainer;
-import opennlp.tools.ml.model.AbstractModel;
-import opennlp.tools.ml.model.DataIndexer;
-import opennlp.tools.ml.model.Event;
-import opennlp.tools.ml.model.IndexHashTable;
-import opennlp.tools.ml.model.MutableContext;
-import opennlp.tools.ml.model.OnePassDataIndexer;
-import opennlp.tools.ml.model.Sequence;
-import opennlp.tools.ml.model.SequenceStream;
-import opennlp.tools.ml.model.SequenceStreamEventStream;
+import opennlp.tools.ml.model.*;
 
 /**
  * Trains models for sequences using the perceptron algorithm.  Each outcome is represented as
@@ -69,7 +61,7 @@ public class SimplePerceptronSequenceTrainer extends AbstractEventModelSequenceT
   private MutableContext[] averageParams;
 
   /** Mapping between context and an integer */
-  private IndexHashTable<String> pmap;
+  private ObjIntTable<String> pmap;
 
   private Map<String,Integer> omap;
 
@@ -129,7 +121,7 @@ public class SimplePerceptronSequenceTrainer extends AbstractEventModelSequenceT
 
     outcomeList  = di.getOutcomeList();
     predLabels = di.getPredLabels();
-    pmap = new IndexHashTable<String>(predLabels, 0.7d);
+    pmap = ObjIntTableFactory.create(predLabels, 0.7d);
 
     display("Incorporating indexed data for training...  \n");
     this.useAverage = useAverage;

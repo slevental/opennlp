@@ -24,11 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import opennlp.tools.ml.model.AbstractModel;
-import opennlp.tools.ml.model.AbstractModelWriter;
-import opennlp.tools.ml.model.ComparablePredicate;
-import opennlp.tools.ml.model.Context;
-import opennlp.tools.ml.model.IndexHashTable;
+import opennlp.tools.ml.model.*;
 
 /**
  * Abstract parent class for GISModel writers.  It provides the persist method
@@ -47,7 +43,7 @@ public abstract class GISModelWriter extends AbstractModelWriter {
     Object[] data = model.getDataStructures();
 
     PARAMS = (Context[]) data[0];
-    IndexHashTable<String> pmap = (IndexHashTable<String>) data[1];
+    ObjIntTable<String> pmap = (ObjIntTable<String>) data[1];
     OUTCOME_LABELS = (String[]) data[2];
     CORRECTION_CONSTANT = (Integer) data[3];
     CORRECTION_PARAM = (Double) data[4];

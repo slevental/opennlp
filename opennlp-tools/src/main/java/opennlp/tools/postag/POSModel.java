@@ -134,18 +134,8 @@ public final class POSModel extends BaseModel {
     }
   }
 
-  /**
-   * @deprecated use getPosSequenceModel instead. This method will be removed soon.
-   */
-  @Deprecated
-
-  public MaxentModel getPosModel() {
-    if (artifactMap.get(POS_MODEL_ENTRY_NAME) instanceof MaxentModel) {
-      return (MaxentModel) artifactMap.get(POS_MODEL_ENTRY_NAME);
-    }
-    else {
-      return null;
-    }
+  public AbstractModel getPosModel() {
+    return (AbstractModel) artifactMap.get(POS_MODEL_ENTRY_NAME);
   }
 
   public SequenceClassificationModel<String> getPosSequenceModel() {
